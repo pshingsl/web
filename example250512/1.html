@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<style>
+    body{
+        text-align: center;
+        border: 1px solid;
+        margin: 20px;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 1px 1px 1px;
+    }
+    button:hover{
+        background-color: blue;
+        color:white
+    }
+</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>웹 페이지 실습</title>
+</head>
+<body>
+  <div >
+    <h1>나의 첫 웹 페이지</h1>
+    <p id="cl">버튼을 클릭해보세요!</p>
+    <button onclick="change()">클릭하기</button>
+  </div>
+  <script>       
+    function change(){
+        const p = document.getElementById('cl');
+        p.textContent = '버튼 체인지';
+        }
+  </script>
+</body>
+</html>
+    <!-- 
+       const change = document.getElementsByTagName('p');
+          change.textContent = "클릭";
+          오류나는 이유
+          1.getElementByTagName()은 HTMLCOllection을 반환
+          HTMLCollection: 여러개의 HTML 요소를 묶어서 담아놓은 집합
+          2.여러 개의 요소가 들어 있는 유사 배열
+          3.그래서 .textContnent 쓸수 없음 -> 존재하지 않음-->
