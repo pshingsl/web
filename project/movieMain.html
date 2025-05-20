@@ -33,7 +33,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <a class="nav-link" href="movie.html/897160">영화</a>
+              <a class="nav-link" href="movie.html">영화</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="intro.html">소개</a>
@@ -49,66 +49,27 @@
   <div class="container mt-5 text-center ">
       <div class="card-body">
         <!-- 홈페이지 인사 -->
-        <h5 class="card-title">어서오세요. flex movie입니다.</h5>
-        <p>flex movie에서 손님들이 보고싶은 영화를 마음꺼 보세요.</p>
-         <form class="d-flex" role="search">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-            <button class="btn btn-outline-success" onclick="search()" type="submit">Search</button>
+        <p>어서오세요. flex movie입니다..</p>
+         <form class="d-flex" role="search" onsubmit="search(); return false;">
+            <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <button id="searchButton" class="btn btn-outline-success" type="submit">Search</button>
           </form>
       </div>
-    </div>  
+    </div> 
  </section>
 
- <!-- 영화 목록 이동하기 -->
- <section>
-  <div class="container mt-4 bg-secondary">
+  <main>
+     <div class="container mt-4 ">
     <!-- 무비차트 구역 -->
       <p>무비차트</p>
-      <form id="form" action="movie.html" method="get">
-        <div class="row row-cols-1 row-cols-md-5 g-4 text-center">
-          <div class="col">
-            <div class="card h-50" >
-              <a href="#movie.html/950387">
-              <img src="./image/용감한시민.jpg" class="card-img-top" alt="...">
-              </a>
-              <div class="card-body">
-              </div>
-            </div>
+          <div class="row row-cols-1 row-cols-md-5 g-4 text-center" 
+          id="movieContainer"> 
           </div>
-          <form action="">
-          <div class="col">
-            <div class="card h-50">
-              <img src="./image/mission.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          </form>
-          <div class="col">
-            <div class="card h-50">
-              <img src="./image/dest.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-50">
-              <img src="./image/inside.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="card h-50">
-              <img src="image/vet.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-              </div>
-            </div>
-          </div>          
-        </div>
-        </form>
-      </div>
-    </div>  
- </section>
+    </div>
+  </main>   
+
+ 
+
+
 </body>
 </html>

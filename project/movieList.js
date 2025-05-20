@@ -3378,7 +3378,7 @@ const movieList = {
       adult: false,
       backdrop_path: "/zViRwl3ySscZnbXZJ2Q9wq3SeUG.jpg",
       genre_ids: [16, 878, 12, 10751],
-      id: 1,
+      id: 698687,
       original_language: "en",
       original_title: "Transformers One",
       overview:
@@ -3396,5 +3396,101 @@ const movieList = {
   total_results: 1008061,
 };
 
-const url = new URL("http://127.0.0.1:5500/project/movie.html?wordid=ekw000033653&q=coffee");
-console.log(url)
+// 위의 자료는 객체(key-value) json형태로 씀
+const movies = movieList.results;
+const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
+const searchInput = document.getElementById('searchInput');
+const movieContainer = document.querySelector('.row.row-cols-1') || document.getElementById('movieContainer');
+const detailDiv = document.getElementById('movieDetail');
+
+// 공통 영화 카드 생성 함수
+function createMovieCard(movie) {
+  const col = document.createElement('div');
+  col.className = 'col';
+
+  const imageUrl = movie.poster_path
+    ? imageBaseUrl + movie.poster_path
+    : './image/default.jpg';
+
+  col.innerHTML = `
+    <div class="card h-50">
+      <a href="movie.html?id=${movie.id}">
+        <img src="${imageUrl}" class="card-img-top" alt="${movie.title}">
+      </a>
+      <div class="card-body">
+        <h5 class="card-title">${movie.title}</h5>
+      </div>
+    </div>
+  `;
+
+  return col;
+}
+
+// 영화 목록 렌더링 함수
+function displayMovies(movieArray) {
+  if (!movieContainer) return;
+  movieContainer.innerHTML = '';
+
+  if (movieArray.length === 0) {
+    movieContainer.innerHTML = '<p class="text-white">검색 결과가 없습니다.</p>';
+    return;
+  }
+
+  movieArray.forEach(movie => {
+    const card = createMovieCard(movie);
+    movieContainer.appendChild(card);
+  });
+}
+
+// 영화 검색 함수 (검색창 입력 기준)
+window.search = function () {
+  const keyword = searchInput.value.trim().toLowerCase();
+
+  const filtered = movies.filter(movie =>
+    movie.title.toLowerCase().includes(keyword)
+  );
+
+  displayMovies(filtered);
+};
+
+// 페이지 로딩 시 실행
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const movieId = parseInt(params.get('id'));
+
+  // 상세 페이지일 경우
+  if (movieId && detailDiv) {
+    const movie = movies.find(m => m.id === movieId);
+
+    if (movie) {
+      const imageUrl = movie.poster_path
+        ? imageBaseUrl + movie.poster_path
+        : './image/default.jpg';
+
+      detailDiv.innerHTML = `
+        <div class="row">
+          <div class="col-md-4">
+            <img src="${imageUrl}" alt="${movie.title}" class="img-fluid rounded">
+          </div>
+          <div class="col-md-8">
+            <h1>${movie.title}</h1>
+            <p>${movie.overview}</p>
+            <p><strong>Popularity:</strong> ${movie.popularity}</p>
+            <p><strong>Release Date:</strong> ${movie.release_date || '정보 없음'}</p>
+          </div>
+        </div>
+      `;
+    } else {
+      detailDiv.innerHTML = `<p class="text-danger">영화 정보를 찾을 수 없습니다.</p>`;
+    }
+  }
+
+  // 메인 페이지일 경우 (검색/목록 출력)
+  if (movieContainer && !movieId) {
+    displayMovies(movies.slice(0, 5)); // 기본 5개 출력
+  }
+});
+
+
+
+
