@@ -3396,23 +3396,24 @@ const movieList = {
   total_results: 1008061,
 };
 
-// 위의 자료는 객체(key-value) json형태로 씀
+// 위의 자료는 객체(key-value) json형태로 씀 
 const movies = movieList.results;
 const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
 const searchInput = document.getElementById('searchInput');
 const movieContainer = document.querySelector('.row.row-cols-1') || document.getElementById('movieContainer');
 const detailDiv = document.getElementById('movieDetail');
 
-// 공통 영화 카드 생성 함수
+// 영화 카드
 function createMovieCard(movie) {
-  const col = document.createElement('div');
-  col.className = 'col';
+  const movieLists = document.createElement('div');
+  movieLists.className = 'movieLists';
+  
 
   const imageUrl = movie.poster_path
     ? imageBaseUrl + movie.poster_path
     : './image/default.jpg';
 
-  col.innerHTML = `
+  movieLists.innerHTML = `
     <div class="card h-50">
       <a href="movie.html?id=${movie.id}">
         <img src="${imageUrl}" class="card-img-top" alt="${movie.title}">
@@ -3423,10 +3424,10 @@ function createMovieCard(movie) {
     </div>
   `;
 
-  return col;
+  return movieLists;
 }
 
-// 영화 목록 렌더링 함수
+// 영화 목록
 function displayMovies(movieArray) {
   if (!movieContainer) return;
   movieContainer.innerHTML = '';
@@ -3442,7 +3443,7 @@ function displayMovies(movieArray) {
   });
 }
 
-// 영화 검색 함수 (검색창 입력 기준)
+// 메인 화면에서 영화 검색
 window.search = function () {
   const keyword = searchInput.value.trim().toLowerCase();
 
@@ -3474,8 +3475,10 @@ window.addEventListener('DOMContentLoaded', () => {
           </div>
           <div class="col-md-8">
             <h1>${movie.title}</h1>
+            <p>Story</p>
             <p>${movie.overview}</p>
             <p><strong>Popularity:</strong> ${movie.popularity}</p>
+            <p><strong>Popularity:</strong> ${movie.vote_average}</p>
             <p><strong>Release Date:</strong> ${movie.release_date || '정보 없음'}</p>
           </div>
         </div>
@@ -3485,7 +3488,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // 메인 페이지일 경우 (검색/목록 출력)
+  // 메인 페이지 검색/목록
   if (movieContainer && !movieId) {
     displayMovies(movies.slice(0, 5)); // 기본 5개 출력
   }

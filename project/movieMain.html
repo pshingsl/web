@@ -16,7 +16,6 @@
         display: flex;
         justify-content: center;
         padding: 5px;
-        background-color: #45a1ff;
         color: #fff;
     }
   </style>
@@ -51,7 +50,7 @@
         <!-- 홈페이지 인사 -->
         <p>어서오세요. flex movie입니다..</p>
          <form class="d-flex" role="search" onsubmit="search(); return false;">
-            <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+            <input id="searchInput" class="form-control me-2" type="search" placeholder="Search" />
             <button id="searchButton" class="btn btn-outline-success" type="submit">Search</button>
           </form>
       </div>
@@ -64,7 +63,10 @@
       <p>무비차트</p>
           <div class="row row-cols-1 row-cols-md-5 g-4 text-center" 
           id="movieContainer"> 
-          </div>
+          </div><br>
+          <footer>
+            <a href="https://github.com/pshingsl/web/tree/main/project">github</a>
+          </footer>
     </div>
   </main>   
 
