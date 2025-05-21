@@ -3488,12 +3488,14 @@ window.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  
   // 메인 페이지 검색/목록
   if (movieContainer && !movieId) {
-    displayMovies(movies.slice(0, 5)); // 기본 5개 출력
+    displayMovies(movies.slice(0, 10)); // 기본 5개 출력
   }
-});
 
+});
+  
 // 라이블러리
 gsap.to("#title", { x: 30, duration: 2, ease: "bounce" });
 const swiper = new Swiper('.swiper', { loop: true, autoplay: { delay: 2000 } });
