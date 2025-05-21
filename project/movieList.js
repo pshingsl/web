@@ -3474,11 +3474,11 @@ window.addEventListener('DOMContentLoaded', () => {
             <img src="${imageUrl}" alt="${movie.title}" class="img-fluid rounded">
           </div>
           <div class="col-md-8">
-            <h1>${movie.title}</h1>
-            <p>Story</p>
+            <h1><strong>${movie.title}</strong></h1>
+            <p><strong>Story</strong></p>
             <p>${movie.overview}</p>
             <p><strong>Popularity:</strong> ${movie.popularity}</p>
-            <p><strong>Popularity:</strong> ${movie.vote_average}</p>
+            <p><strong>Vote_average:</strong> ${movie.vote_average}</p>
             <p><strong>Release Date:</strong> ${movie.release_date || '정보 없음'}</p>
           </div>
         </div>
@@ -3494,6 +3494,8 @@ window.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-
-
+// 라이블러리
+gsap.to("#title", { x: 30, duration: 2, ease: "bounce" });
+const swiper = new Swiper('.swiper', { loop: true, autoplay: { delay: 2000 } });
+gsap.to(".box", { x: 70, duration: 3, ease: "bounce" });
 
