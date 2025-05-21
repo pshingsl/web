@@ -3396,7 +3396,7 @@ const movieList = {
   total_results: 1008061,
 };
 
-// 위의 자료는 객체(key-value) json형태로 씀 
+// 위의 자료는 객체(key-value) 
 const movies = movieList.results;
 const imageBaseUrl = "https://image.tmdb.org/t/p/w500/";
 const searchInput = document.getElementById('searchInput');
@@ -3408,6 +3408,7 @@ function createMovieCard(movie) {
   const movieLists = document.createElement('div');
   movieLists.className = 'movieLists';
   
+
 
   const imageUrl = movie.poster_path
     ? imageBaseUrl + movie.poster_path
@@ -3496,8 +3497,4 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
   
-// 라이블러리
-gsap.to("#title", { x: 30, duration: 2, ease: "bounce" });
-const swiper = new Swiper('.swiper', { loop: true, autoplay: { delay: 2000 } });
-gsap.to(".box", { x: 70, duration: 3, ease: "bounce" });
 
